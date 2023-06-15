@@ -4,7 +4,7 @@ import logo from '@assets/svg/the-godfather.svg';
 import dataJson from './mockData/EmployeeData.json';
 import { useMemo, useState } from 'react';
 import { CardWrapper, HomePageWrapper, ItemWrapper } from './styles/appStyles';
-import { Card, Slider } from 'antd';
+import { Slider } from 'antd';
 
 interface IUser {
   name: string;
@@ -17,7 +17,7 @@ interface IUser {
 const initialData = dataJson.employees as IUser[];
 
 function App() {
-  const [users, setUsers] = useState<IUser[]>(initialData);
+  const [users] = useState<IUser[]>(initialData);
   const [userSelected, setUserSelected] = useState<IUser | undefined>(undefined);
 
   const selectedNames = useMemo(() => {
@@ -46,7 +46,8 @@ function App() {
                   <ItemWrapper
                     key={user.name}
                     popularity={user.popularity}
-                    selected={selectedNames.includes(user.name)}
+                    selectedColleagues={selectedNames.includes(user.name)}
+                    itemSelected={user.name === userSelected?.name}
                     onClick={() => handleSelectUser(user)}
                   >
                     {user.name}
@@ -65,7 +66,7 @@ function App() {
                   <p className='name'>{userSelected.name}</p>
                   <div className='popular'>
                     <span>Popular</span>
-                    <Slider defaultValue={userSelected.popularity} disabled={true} />
+                    <Slider value={userSelected.popularity} disabled={true} />
                   </div>
                   <CardWrapper>
                     <p>{userSelected.biography}</p>

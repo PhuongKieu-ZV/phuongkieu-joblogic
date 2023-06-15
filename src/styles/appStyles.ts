@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 interface IProps {
   popularity: number;
-  selected: boolean;
+  selectedColleagues: boolean;
+  itemSelected: boolean;
 }
 
 export const HomePageWrapper = styled.div`
@@ -15,6 +16,7 @@ export const HomePageWrapper = styled.div`
       height: 300px;
       width: 100%;
       object-fit: cover;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     }
   }
 
@@ -32,8 +34,14 @@ export const HomePageWrapper = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       .logo {
         padding: 30px 0 55px 0;
+      }
+
+      .users {
+        width: 100%;
+        text-align: center;
       }
     }
     .content {
@@ -50,7 +58,8 @@ export const HomePageWrapper = styled.div`
         img {
           width: 80px;
           height: 80px;
-          border-radius: 8px;
+          border: 2px solid #fff;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         }
       }
       .right {
@@ -70,11 +79,14 @@ export const HomePageWrapper = styled.div`
 export const ItemWrapper = styled.li<IProps>`
   font-size: ${(p) => p.popularity}rem;
   cursor: pointer;
-  color: ${(p) => (p.selected ? 'blue' : 'black')};
+  color: ${(p) => (p.selectedColleagues ? 'blue' : 'black')};
+  background: ${(p) => (p.itemSelected ? '#988' : 'none')};
+  padding: 10px 0;
 `;
 
 export const CardWrapper = styled(Card)`
   width: 100%;
-  background: #000;
+  background: #646262;
   color: #fff;
+  border-color: #646262;
 `;
